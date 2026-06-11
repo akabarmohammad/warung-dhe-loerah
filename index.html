@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waroeng Dhe Loerah — Tebalo, Manyar, Gresik</title>
+<meta name="description" content="Warung Garang Asem Ayam Kendil milik Cak Sul, Pak Lurah Tebalo. Ambil Surat Undangan, lihat lokasi, dan ikuti keseharian warung.">
+
+<!-- ====================================================================
+  SEBELUM DIPAKAI, GANTI 4 HAL INI (cari & replace):
+  1. 62XXXXXXXXXX        -> nomor WhatsApp admin (format 62, tanpa 0/+)
+  2. GANTI_LINK_MAPS     -> link Google Maps warung
+  3. handle TikTok/IG    -> pastikan @waroeng.dhe.loerah sudah benar
+  4. Jam buka 10.00-22.00 -> konfirmasi jam final
+===================================================================== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F2E8CF;
+    --card:#EADCBC;
+    --ink:#3B2A1A;
+    --umber:#5A3A1E;
+    --seal:#A8322A;
+    --seal-dark:#7E2018;
+    --gold:#B98F3E;
+    --clay:#9A5B33;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:17px;line-height:1.6;
+    padding:18px 14px 40px;
+    display:flex;justify-content:center;
+  }
+  .sheet{
+    width:100%;max-width:430px;
+    background:var(--paper);
+    border:1.5px solid var(--gold);
+    box-shadow:0 0 0 6px var(--paper),0 0 0 7.5px rgba(122,74,43,.35);
+    border-radius:4px;
+    padding:30px 24px 26px;
+    animation:rise .6s ease both;
+  }
+  @keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+  .display{font-family:"Fraunces",Georgia,"Times New Roman",serif}
+  .eyebrow{
+    text-align:center;font-size:12px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--clay);font-weight:500;
+  }
+
+  .mark{display:block;margin:6px auto 4px;width:66px;height:66px}
+  .steam{animation:wisp 3.2s ease-in-out infinite}
+  .steam.b{animation-delay:.9s}
+  .steam.c{animation-delay:1.8s}
+  @keyframes wisp{0%,100%{opacity:.25;transform:translateY(2px)}50%{opacity:.7;transform:translateY(-2px)}}
+
+  h1.title{
+    font-family:"Fraunces",Georgia,serif;font-weight:500;
+    text-align:center;font-size:33px;line-height:1.1;color:var(--umber);
+    margin:6px 0 4px;
+  }
+  .slogan{
+    text-align:center;font-family:"Fraunces",Georgia,serif;
+    font-style:italic;font-size:15px;color:var(--clay);margin-bottom:18px;
+  }
+
+  .rule{border:0;border-top:1px solid var(--gold);opacity:.6;margin:20px 2px}
+  .rule.dot{position:relative}
+  .rule.dot::after{
+    content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;
+    transform:translateX(-50%) rotate(45deg);background:var(--gold);
+  }
+
+  .greet{font-family:"Fraunces",Georgia,serif;font-size:22px;color:var(--umber);margin-bottom:8px}
+  .lede{margin-bottom:10px}
+  .lede .q{font-style:italic;color:var(--seal-dark)}
+  .body p{margin-bottom:12px}
+  .body strong{font-weight:500;color:var(--umber)}
+
+  .syukur{text-align:center;font-style:italic;color:var(--clay);font-family:"Fraunces",Georgia,serif;font-size:16px;margin:18px 0 12px}
+
+  /* primary action — the wax seal */
+  .seal-btn{
+    display:flex;align-items:center;gap:14px;justify-content:center;
+    background:var(--seal);color:#FBEFD6;text-decoration:none;
+    border-radius:6px;padding:16px 18px;min-height:60px;
+    box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18);
+    transition:transform .12s ease,background .12s ease;
+  }
+  .seal-btn:hover{background:var(--seal-dark)}
+  .seal-btn:active{transform:scale(.985)}
+  .seal-icon{flex:0 0 auto;width:40px;height:40px}
+  .seal-btn .lab{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:18px;line-height:1.15;text-align:left}
+  .seal-sub{text-align:center;font-size:13.5px;color:var(--clay);margin-top:8px;line-height:1.45}
+
+  .infocard{
+    background:var(--card);border:1px solid var(--gold);border-radius:5px;
+    padding:15px 16px;text-align:center;margin-top:6px;
+  }
+  .infocard .k{font-family:"Fraunces",Georgia,serif;font-size:18px;color:var(--seal-dark);font-weight:500}
+  .infocard .v{font-size:14.5px;margin-top:4px}
+
+  .ghost{
+    display:flex;align-items:center;justify-content:center;gap:10px;
+    background:transparent;color:var(--umber);text-decoration:none;
+    border:1.5px solid var(--clay);border-radius:6px;
+    padding:13px 16px;min-height:52px;font-weight:500;font-size:16px;
+    transition:background .12s ease;
+  }
+  .ghost:hover{background:var(--card)}
+  .ghost svg{flex:0 0 auto}
+  .loc-note{text-align:center;font-size:13.5px;color:var(--clay);margin-top:8px;line-height:1.5}
+
+  .follow-label{text-align:center;font-size:14px;color:var(--ink);margin-bottom:10px}
+  .social{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .social a{
+    display:flex;align-items:center;justify-content:center;gap:8px;
+    text-decoration:none;color:var(--umber);font-weight:500;font-size:15px;
+    border:1.5px solid var(--clay);border-radius:6px;padding:12px;min-height:50px;
+  }
+  .social a:hover{background:var(--card)}
+
+  .sign{text-align:center;margin-top:24px}
+  .sign .by{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:15px;color:var(--ink)}
+  .sign .who{font-family:"Fraunces",Georgia,serif;font-weight:500;font-size:17px;color:var(--umber);margin-top:2px}
+  .sign .foot{font-family:"Fraunces",Georgia,serif;font-style:italic;font-size:13px;color:var(--clay);margin-top:10px}
+
+  a:focus-visible,.seal-btn:focus-visible{outline:3px solid var(--seal-dark);outline-offset:2px}
+
+  @media (prefers-reduced-motion:reduce){
+    .sheet{animation:none}.steam{animation:none;opacity:.5}
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+
+  <p class="eyebrow">Tebalo &middot; Manyar &middot; Gresik</p>
+
+  <svg class="mark" viewBox="0 0 64 64" aria-hidden="true">
+    <path class="steam c" d="M24 14c-3-3 1-5-1-8" fill="none" stroke="#C9A05A" stroke-width="2" stroke-linecap="round"/>
+    <path class="steam" d="M32 12c-3-3 1-5-1-9" fill="none" stroke="#C9A05A" stroke-width="2" stroke-linecap="round"/>
+    <path class="steam b" d="M40 14c-3-3 1-5-1-8" fill="none" stroke="#C9A05A" stroke-width="2" stroke-linecap="round"/>
+    <ellipse cx="32" cy="22" rx="15" ry="4.5" fill="#7A4A2B"/>
+    <path d="M18 23c0 13 4 24 14 24s14-11 14-24z" fill="#9A5B33"/>
+    <path d="M18 23c0 13 4 24 14 24s14-11 14-24" fill="none" stroke="#6B3F22" stroke-width="1.5"/>
+    <ellipse cx="32" cy="23" rx="14" ry="4" fill="#6B3F22"/>
+    <ellipse cx="32" cy="22" rx="10" ry="2.6" fill="#3B2A1A"/>
+  </svg>
+
+  <h1 class="title">Waroeng Dhe Loerah</h1>
+  <p class="slogan">Mlebu Gowo Roso, Mulih Gowo Crito</p>
+
+  <hr class="rule dot">
+
+  <section class="body">
+    <p class="greet">Sugeng rawuh.</p>
+    <p class="lede">Panjenengan mungkin baru melihat nama kami dan bertanya, <span class="q">&ldquo;Dhe Loerah niku nopo?&rdquo;</span></p>
+    <p>Waroeng Dhe Loerah adalah warung <strong>Garang Asem Ayam Kendil</strong> milik Cak Sul &mdash; Pak Lurah Tebalo selama 13 tahun. Ayam empuk berkuah segar, dimasak perlahan dalam kendil tanah liat. Masakan rumahan untuk berkumpul bersama keluarga.</p>
+  </section>
+
+  <p class="syukur">Sebagai raos syukur, panjenengan kami undang:</p>
+
+  <!-- GANTI 62XXXXXXXXXX dengan nomor WhatsApp admin -->
+  <a class="seal-btn" href="https://wa.me/62XXXXXXXXXX?text=UNDANGAN">
+    <svg class="seal-icon" viewBox="0 0 44 44" aria-hidden="true">
+      <circle cx="22" cy="22" r="20" fill="#7E2018"/>
+      <circle cx="22" cy="22" r="15.5" fill="none" stroke="#FBEFD6" stroke-width="1.2" opacity=".8"/>
+      <path d="M22 13l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7z" fill="#FBEFD6"/>
+    </svg>
+    <span class="lab">Ambil Surat Undangan<br>Pak Lurah</span>
+  </a>
+  <p class="seal-sub">Gratis 1 Es Dhe Loerah (senilai Rp12.000)<br>dengan minimal transaksi Rp50.000</p>
+
+  <hr class="rule">
+
+  <div class="infocard">
+    <div class="k">Grand Opening &middot; 19 Juni 2026</div>
+    <div class="v">Promo Beli 2 Garang Asem, dapat 4 porsi. Berlaku hari H saja.</div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- GANTI GANTI_LINK_MAPS dengan link Google Maps warung -->
+  <a class="ghost" href="GANTI_LINK_MAPS">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5A3A1E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg>
+    Lihat lokasi &amp; rute
+  </a>
+  <p class="loc-note">Tebalo, Manyar, Gresik &mdash; masuk &plusmn;1 km dari gerbang desa.<br>Buka tiap hari, 10.00&ndash;22.00 WIB</p>
+
+  <hr class="rule">
+
+  <p class="follow-label">Ikuti keseharian warung &amp; Cak Sul:</p>
+  <div class="social">
+    <!-- pastikan handle benar -->
+    <a href="https://www.tiktok.com/@waroeng.dhe.loerah">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#5A3A1E" aria-hidden="true"><path d="M16 3c.3 2 1.7 3.6 3.7 4v2.7c-1.4 0-2.7-.4-3.7-1.1V15a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v2.9a2.9 2.9 0 1 0 2 2.7V3z"/></svg>
+      TikTok
+    </a>
+    <a href="https://www.instagram.com/waroeng.dhe.loerah">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5A3A1E" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="#5A3A1E" stroke="none"/></svg>
+      Instagram
+    </a>
+  </div>
+
+  <div class="sign">
+    <hr class="rule dot">
+    <p class="by">Hormat kami,</p>
+    <p class="who">Cak Sul &mdash; Pak Lurah Tebalo</p>
+    <p class="foot">Sugeng rawuh, kami tunggu kerawuhanipun.</p>
+  </div>
+
+</main>
+</body>
+</html>
